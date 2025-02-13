@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/signup.css">
+</head>
+
+<body>
+    <div class="left">
+        <a href=""><img src="./images/singup2.gif" alt=""></a>
+    </div>
+    <div class="right">
+        <div class="texts">
+            <div class="head">Welcome !</div>
+            <div class="login">signup for cook'in</div>
+        </div>
+        <form action="/signup" method="post">
+            <input type="text" placeholder="Username" name="username">
+            <input type="email" placeholder="Email" name="email">
+            <input class="pass" type="password" placeholder="Password" name="password"><img id="eye" src="./images/eye.png" alt="">
+            <div class="link">
+                <a href="#">Forget Password?</a>
+                <a href="/login">Already a User?</a>
+            </div>
+            <button type="submit">Dive In</button>
+        </form>
+        <a href="/auth/google"><button id="logo"><img src="/images/googlelogo.png" alt=""></button></a>
+    </div>
+</body>
+<script src="./scripts/signup.js"></script>
+
+</html>
