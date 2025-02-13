@@ -1,0 +1,144 @@
+body{
+    margin: 0;
+    padding-bottom: 100px;
+    width: 100vw;
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('/images/background-home.jpg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+    overflow-x: hidden;
+    gap: 60px;
+}
+.nav{
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    gap: 180px;
+    align-items: center;
+    justify-content: space-around;
+    font-family: "Titillium Web", serif;
+
+}
+.nav img{
+    height: 10vh;
+    width: 10vh;
+    box-shadow: 0px 0px 5px 8px rgb(255 255 255 / 12%);    
+    border-radius: 50px;
+    transition: all 0.2s ease-out;
+}
+.nav img:hover{
+    transform: translateY(-2px);
+    filter:grayscale(1);
+}
+.home{
+    color: white !important;
+    transform: translateY(-2px);
+    font-weight: 700 !important;
+}
+.nav a{
+    color: grey;
+    text-decoration: none;
+    font-size: 34px;
+    font-weight: 600;
+    transition: all 0.3s ease-out;
+}
+
+.nav a:hover{
+    color: white;
+    text-shadow: 0px 0px 2px  white;
+    transform: scaleZ(2);
+    transform: translateY(-3px);
+}
+.but{
+    display: flex;
+    gap: 34px;
+}
+.log{
+    display: flex;
+    gap: 20px;
+}
+.banner{
+    width: 90vw;
+    height: 50vh;
+    box-shadow: 0 0 10px 3px white;
+    animation: intensity 2s linear infinite;
+    border-radius: 35px;
+    transition: all 0.3s ease-in;
+}
+.banner:hover{
+    filter: blur(4px);
+    transform: translateY(-5px);
+}
+.banner img{
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 35px;
+}
+@keyframes intensity {
+    0% {
+        box-shadow: 0 0 10px 3px white;
+    }
+    25% {
+        box-shadow: 0 0 12px 5px white;
+    }
+    50% {
+        box-shadow: 0 0 15px 15px white;
+    }
+    75% {
+        box-shadow: 0 0 12px 5px white;
+    }
+    100% {
+        box-shadow: 0 0 10px 3px white;
+    }
+}
+.content{
+    width: 90vw;
+    height: 25vw;
+    display: flex;
+    justify-content: space-between;
+}
+.c{
+    width: 25vw;
+    height: 25vw;
+}
+.c img{
+    height: 25vw;
+    width: 25vw;
+    object-fit: cover;
+    object-position: center;
+    border-top: 2px solid grey;
+    border-radius: 20px;
+    animation: movingborder 2s infinite linear;
+    transition: all 0.2s ease-in;
+}
+.c img:hover{
+    transform: rotateZ(360deg);
+    filter:blur(3px);
+}
+@keyframes movingborder {
+    0%{
+        border-top: 5px solid grey;
+    }
+    25%{
+        border-right: 5px solid grey;
+    }
+    50%{
+        border-bottom: 5px solid grey;
+    }
+    75%{
+        border-left: 5px solid grey;
+    }
+    100%{
+        border-top: 5px solid grey;
+    }
+}
