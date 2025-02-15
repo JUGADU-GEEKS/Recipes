@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const passport = require('./utilities/passport-config');
 const session = require('express-session');
+const axios = require('axios');
+require('dotenv').config();
 
 //Requiring the DataBases
 const userModel = require('./models/userModel')
@@ -51,6 +53,14 @@ app.get("/error/:given", (req,res)=>{
 })
 app.get("/home",(req,res)=>{
     res.render("home");
+})
+app.get("/vegan", async (req, res)=>{
+    const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.SPOONACULAR_API_KEY}&diet=vegan`)
+    const recipes = response.data.results.map(recipe=>({
+        title : recipe.title,
+        image : recipe.image
+    }))
+    res.render("recipespage.ejs", { recipes });
 })
 
 //POST requests
