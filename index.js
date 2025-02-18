@@ -58,9 +58,17 @@ app.get("/vegan", async (req, res)=>{
     const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.SPOONACULAR_API_KEY}&diet=vegan`)
     const recipes = response.data.results.map(recipe=>({
         title : recipe.title,
-        image : recipe.image
+        image : recipe.image,
+        id: recipe.id
     }))
+    res.redirect(`/recipes?data=${encodeURIComponent(JSON.stringify(recipes))}`);
+})
+app.get("/recipes", async (req, res)=>{
+    const recipes = JSON.parse(decodeURIComponent(req.query.data)); // Get recipes from query params
     res.render("recipespage.ejs", { recipes });
+})
+app.get("/search", (req,res)=>{
+    res.render("ingrediants");
 })
 
 //POST requests
@@ -100,6 +108,18 @@ app.post('/login', async(req,res)=>{
             res.redirect('/error/Password might be wrong');
         }
     })
+})
+app.post('/search', async(req,res)=>{
+    const { ingredients } = req.body;
+    const formattedIngredients = ingredients.join(",+");
+    const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.SPOONACULAR_API_KEY}&ingrediants=${formattedIngredients}&number=10`);
+    const recipes = response.data.results.map(recipe=>({
+        title : recipe.title,
+        image : recipe.image,
+        id : recipe.id
+    }))
+    res.redirect(`/recipes?data=${encodeURIComponent(JSON.stringify(recipes))}`);
+
 })
 
 //running the app

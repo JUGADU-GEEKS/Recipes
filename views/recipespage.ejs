@@ -13,8 +13,8 @@
     <div class="nav">
         <img src="/images/demoprofile.jpg" alt="">
         <div class="but">
-            <a href="#">Home</a>
-            <a href="#" class="home">AI Food Suggest</a>
+            <a href="/home">Home</a>
+            <a href="/search" class="home">AI Food Suggest</a>
             <a href="#">About Us</a>
             <a href="#">Contact Us</a>
         </div>
@@ -29,7 +29,11 @@
                 <img src="<%= recipe.image %>" alt="">
                 <div class="content">
                     <div class="title"><%= recipe.title %></div>
-                    <div class="else">Some tags</div>
+                    <div class="id" style="
+                    color: greenyellow;
+                    font-size: 20px;
+                    font-weight: 600;
+                "><%= recipe.id %></div>
                 </div>
             </div>
         <%})%>
