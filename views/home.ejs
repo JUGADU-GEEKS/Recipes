@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
 </head>
+
+<!--
 <body>
     <div class="nav">
         <img src="./images/demoprofile.jpg" alt="">
@@ -38,5 +40,77 @@
         </div>
 
     </div>
-</body>
+</body>-->
+    
+<body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo">Flavour Scripts</a>
+        <a href="/profile" class="profile-btn"><img src="/images/profile-icon" alt=""></a>
+        <div class="nav-links">
+          <a href="#" class="active">Home</a>
+          <a href="#ai-suggest">AI Food Suggest</a>
+          <a href="#about">About Us</a>
+          <a href="#contact">Contact Us</a>
+        </div>
+        <div class="auth-links">
+          <a href="/logout" class="btn-primary">Logout</a>
+          <a href="/profile" class="profile-link">
+            <img src="/images/profile-icon.png" alt="Profile" class="profile-icon">
+          </a>
+        </div>
+        <button class="mobile-menu-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Discover Amazing Recipes</h1>
+        <p class="subtitle">Your Kitchen, Your Ingredients, Our Recipes!</p>
+        <p class="description">Turn Your Ingredients into Magic!</p>
+        <div class="hero-buttons">
+          <a href="#explore" class="btn-primary">Create your own Recipes here</a>
+          <a href="#ai-suggest" class="btn-primary">Try AI Suggestions</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="features-container">
+        <div class="feature-card">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop" alt="Vegan Food">
+          <div class="card-content">
+            <h3>Vegan Recipes</h3>
+            <p>Discover delicious plant-based recipes</p>
+            <a href="/vegan" class="btn-primary">Explore Vegan</a>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop" alt="Random Food">
+          <div class="card-content">
+            <h3>Surprise Me</h3>
+            <p>Let our AI suggest a random recipe</p>
+            <a href="/surprise" class="btn-primary">Get Surprised</a>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2074&auto=format&fit=crop" alt="Add Recipe">
+          <div class="card-content">
+            <h3>Share Your Recipe</h3>
+            <p>Share your favorite recipes</p>
+            <a href="/add-recipe" class="btn-primary">Add Recipe</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script src="/src/main.js"></script>
+  </body>
 </html>
