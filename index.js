@@ -71,6 +71,18 @@ app.get("/search", (req,res)=>{
     res.render("ingrediants");
 })
 
+app.get("/recipeDesc", async(req, res)=>{
+    const id = req.query.id;
+    const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.SPOONACULAR_API_KEY}`)
+    const desc = {
+        title: response.data.title,
+        time: response.data.readyInMinutes,
+        ingredients: response.data.extendedIngredients.map(ing => ing.original), // Get ingredient names
+        description: response.data.summary
+    };
+    res.render("recipeDesc.ejs", { desc });
+})
+
 //POST requests
 app.post('/signup', async(req,res)=>{
     let {username, email, password} = req.body;

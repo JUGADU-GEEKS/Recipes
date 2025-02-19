@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/recipeDesc.css">
+</head>
+<body>
+    <div class="nav">
+        <img src="/images/demoprofile.jpg" alt="">
+        <div class="but">
+            <a href="#">Home</a>
+            <a href="#" class="home">AI Food Suggest</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="log">
+            <a href="#">Login</a>
+            <a href="#">Signup</a>
+        </div>
+    </div>
+    <div class="form">
+        <div class="imgwithmain">
+            <img src="/images/sample.jpg" alt="">
+            <div class="text">
+                <div class="title">
+                    <%= desc.title %>
+                </div>
+                <div class="ingre">
+                    <% desc.ingredients.forEach((ingredient)=>{ %>
+                        <%= ingredient %>
+                    <% }) %>
+                </div>
+                <div class="time">
+                    <%= desc.time %> minutes
+                </div>
+                <button class="submit">Add to Favourites &#9734;</button>
+            </div>
+        </div>
+        <div class="steps">
+            <%= desc.summary %>
+        </div>
+    </div>
+</body>
+<script src="/JS/ingrediants.js"></script>
+</html>
