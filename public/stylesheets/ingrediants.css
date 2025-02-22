@@ -1,3 +1,11 @@
+:root {
+    --primary: #22c55e;
+    --primary-hover: #16a34a;
+    --text: #9ba1a9;
+    --text-light: #6b7280;
+    --background: #242222;
+    --card-bg: #232425;
+  }
 body{
     margin: 0;
     padding-bottom: 100px;
@@ -12,50 +20,131 @@ body{
     background-size: cover;
     backdrop-filter: blur(5px);
     overflow-x: hidden;
+    overflow-y: hidden;
     gap: 60px;
 }
-.nav{
-    margin-top: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
+.navbar {
+    position: fixed;
+    top: 0;
     width: 100%;
-    height: 10vh;
+    background: rgba(42, 41, 41, 0.95);
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     display: flex;
-    gap: 180px;
     align-items: center;
-    justify-content: space-around;
-    font-family: "Titillium Web", serif;
+}
 
+.nav-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.nav img{
-    height: 10vh;
-    width: 10vh;
-    box-shadow: 0px 0px 5px 8px rgb(255 255 255 / 12%);    
-    border-radius: 50px;
-    transition: all 0.2s ease-out;
+
+.logo {
+    font-size: 1.75rem; /* Increased font size */
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    flex: 1; /* Pushes logo to the left */
 }
-.nav img:hover{
-    transform: translateY(-2px);
-    filter:grayscale(1);
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    flex: 2; /* Centers the navigation links */
 }
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    margin: 0 1.5rem; /* Increased spacing */
+    font-size: 1.1rem; /* Increased font size */
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex: 1; /* Pushes the logout & profile icon to the right */
+    justify-content: flex-end;
+}
+
+.auth-links .profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.profile-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Mobile Menu Button (Hidden by default) */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: row;
+    }
+    .nav-links {
+        display: none;
+    }
+    .mobile-menu-btn {
+        display: flex;
+    }
+}
+
 .home{
     color: white !important;
     transform: translateY(-2px);
     font-weight: 700 !important;
-}
-.nav a{
-    color: grey;
-    text-decoration: none;
-    font-size: 34px;
-    font-weight: 600;
-    transition: all 0.3s ease-out;
-}
-
-.nav a:hover{
-    color: white;
-    text-shadow: 0px 0px 2px  white;
-    transform: scaleZ(2);
-    transform: translateY(-3px);
 }
 .but{
     display: flex;
@@ -66,6 +155,7 @@ body{
     gap: 20px;
 }
 .form{
+    margin-top: 100px;
     width: 90vw;
     height: 70vh;
     display: flex;
@@ -77,7 +167,7 @@ form{
     background: rgba(0,0,0,0.5);
     display: flex;
     height: 65vh;
-    width: 30vw;
+    width: 40vw;
     /* padding: 10px; */
     flex-direction: column;
     align-items: center;
@@ -146,31 +236,31 @@ form{
 }
 @keyframes moveBorder {
     0% {
-        border-top-color: red;
+        border-top-color: #16a34a;
         border-right-color: transparent;
         border-bottom-color: transparent;
         border-left-color: transparent;
     }
     25% {
         border-top-color: transparent;
-        border-right-color: blue;
+        border-right-color: gray;
         border-bottom-color: transparent;
         border-left-color: transparent;
     }
     50% {
         border-top-color: transparent;
         border-right-color: transparent;
-        border-bottom-color: green;
+        border-bottom-color:#16a34a;
         border-left-color: transparent;
     }
     75% {
         border-top-color: transparent;
         border-right-color: transparent;
         border-bottom-color: transparent;
-        border-left-color: yellow;
+        border-left-color: gray;
     }
     100% {
-        border-top-color: red;
+        border-top-color: #16a34a;
         border-right-color: transparent;
         border-bottom-color: transparent;
         border-left-color: transparent;
@@ -223,7 +313,7 @@ form{
     filter: brightness(0) invert(1);
 }
 .submit:hover{
-    background-color: #04AA6D;
+    background-color: #16a34a;
     transform: translateY(-3px);
     animation: moveBorder2 1s ease-in 1;
 }

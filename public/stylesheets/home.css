@@ -169,7 +169,8 @@
     top: 0;
     width: 100%;
     background: rgba(42, 41, 41, 0.95);
-    padding: 1rem 0;
+    padding-top: 14px;
+    padding-bottom: 14px;
     z-index: 1000;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
@@ -177,9 +178,9 @@
   .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 0;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
   }
   
@@ -189,7 +190,19 @@
     color: var(--primary);
     text-decoration: none;
   }
-  
+  .favicon{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  .left-side{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
   .nav-links a {
     text-decoration: none;
     color: var(--text);
@@ -201,7 +214,6 @@
   .nav-links a:hover {
     color: var(--primary);
   }
-  
   .auth-links a {
     justify-content: end;
   }
@@ -219,10 +231,11 @@
   }
   
   .profile-icon {
-    width: 36px;
-    height: 36px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     transition: transform 0.3s ease;
+    margin-left: 10px;
   }
   
   .profile-icon:hover {
