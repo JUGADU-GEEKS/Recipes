@@ -133,6 +133,8 @@ app.post('/search', async(req,res)=>{
     res.redirect(`/recipes?data=${encodeURIComponent(JSON.stringify(recipes))}`);
 
 })
-
+app.get('/profile',async(req,res)=>{
+    res.render("profile.ejs");
+})
 //running the app
 app.listen(3000);
