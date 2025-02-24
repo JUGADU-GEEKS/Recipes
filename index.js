@@ -11,6 +11,7 @@ require('dotenv').config();
 
 //Requiring the DataBases
 const userModel = require('./models/userModel')
+const recipeModel = require('./models/recipeModel')
 
 //Making the app from express for routes and other functionalities
 const app = express();
@@ -26,6 +27,8 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cookieParser());
+
 
 //Setting the view engine to ejs format
 app.set('view engine', "ejs"); 
@@ -82,6 +85,13 @@ app.get("/recipeDesc", async(req, res)=>{
     };
     res.render("recipeDesc.ejs", { desc });
 })
+app.get('/profile',isLoggedIn, async(req,res)=>{
+    let user = await userModel.findOne({email: req.user.email}).populate('addedRecipe');
+    res.render("profile.ejs", { user });
+})
+app.get("/addyourown", (req,res)=>{
+    res.render("addRecipe");
+})
 
 //POST requests
 app.post('/signup', async(req,res)=>{
@@ -97,7 +107,7 @@ app.post('/signup', async(req,res)=>{
                 email,
                 password: hash
             })
-            let token = jwt.sign({email}, 'kunal');
+            let token = jwt.sign({email}, 'kunal_secret');
             res.cookie('token', token);
             res.redirect("/home"); 
         })
@@ -112,7 +122,7 @@ app.post('/login', async(req,res)=>{
     }
     bcrypt.compare(password, user.password, (err,matched)=>{
         if(matched){
-            let token = jwt.sign({username}, 'kunal');
+            let token = jwt.sign({username}, 'kunal_secret');
             res.cookie('token', token);
             res.redirect("/home");
         }
@@ -133,8 +143,37 @@ app.post('/search', async(req,res)=>{
     res.redirect(`/recipes?data=${encodeURIComponent(JSON.stringify(recipes))}`);
 
 })
-app.get('/profile',async(req,res)=>{
-    res.render("profile.ejs");
+app.post('/addRecipe', isLoggedIn, async (req,res)=>{
+    let user = await userModel.findOne({email: req.user.email});
+    let {title, duration, ingredients} = req.body;
+    let recipe = await recipeModel.create({
+        title,
+        duration,
+        ingrediantsWithDetails: ingredients
+    })
+    user.addedRecipe.push(recipe._id);
+    await user.save();
+    res.redirect('/home');
 })
+
+
+
+//isLoggedIn Function
+function isLoggedIn(req, res, next) {
+    const token = req.cookies.token;
+    if (!token) {
+        return res.redirect('/error/You are not Logged In');
+    }
+    try {
+        let data = jwt.verify(token, "kunal_secret");
+        req.user = data;
+        next();
+    } catch (error) {
+        return res.redirect('/error/Invalid or Expired Token');
+    }
+}
+
+
+
 //running the app
 app.listen(3000);

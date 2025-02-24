@@ -5,7 +5,9 @@ const userSchema = mongoose.Schema({
     email : { type: String, required: true},
     password: { type: String },
     googleId: { type: String },
-    favorites: [{ title: String, image: String }]
+    addedRecipe: [{type: mongoose.Schema.Types.ObjectId,
+        ref: "recipe"
+    }]
 });
 
 module.exports  = mongoose.model("user", userSchema); 

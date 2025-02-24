@@ -40,21 +40,17 @@
             <img src="/images/demoprofile.jpg" alt="">
            <div class="profile-info">
             <div class="pers">
-                Kunal Sharma<br>
-                kunal@sharma.com<br>
+                <%=user.username%><br>
+                <%=user.email%><br>
             </div>
             <div class="profile-stats">
                 <div class="stat">
-                  <span class="stat-number">15</span>
+                  <span class="stat-number"><%=user.addedRecipe.length%></span>
                   <span class="stat-label">Recipes</span>
                 </div>
                 <div class="stat">
-                  <span class="stat-number">234</span>
+                  <span class="stat-number">0</span>
                   <span class="stat-label">Favorites</span>
-                </div>
-                <div class="stat">
-                  <span class="stat-number">1.2k</span>
-                  <span class="stat-label">Likes</span>
                 </div>
               </div>
            </div>
@@ -64,59 +60,29 @@
           <div class="container">
               <div class="work-list">
                   <button id="scroll-left" class="scroll-btn">&#10094;</button> 
-                  <div class="work">
                     <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop" alt="Recipe">
-                    <div class="recipe-content">
-                      <h3 style="text-align: center;">Grilled Salmon</h3>
-                      <p class="recipe-stats">
-                        <span style="font-size: 20px; margin-left: 50px;">⏰ 30 min</span>
-                      </p>
-                      <div class="recipe-actions">
-                        <button class="btn-primary">Edit</button>
-                        <button class="btn-secondary">Delete</button>
-                      </div>
-                    </div>
-                </div>
-                <div class="work">
-                  <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop" alt="Recipe">
-                  <div class="recipe-content">
-                    <h3 style="text-align: center;">Grilled Salmon</h3>
-                      <p class="recipe-stats">
-                        <span style="font-size: 20px; margin-left: 50px;">⏰ 30 min</span>
-                      </p>
-                    <div class="recipe-actions">
-                      <button class="btn-primary">Edit</button>
-                      <button class="btn-secondary">Delete</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="work">
-                  <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop" alt="Recipe">
-                  <div class="recipe-content">
-                    <h3 style="text-align: center;">Grilled Salmon</h3>
-                      <p class="recipe-stats">
-                        <span style="font-size: 20px; margin-left: 50px;">⏰ 30 min</span>
-                      </p>
-                    <div class="recipe-actions">
-                      <button class="btn-primary">Edit</button>
-                      <button class="btn-secondary">Delete</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="work">
-                  <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop" alt="Recipe">
-                    <div class="recipe-content">
-                      <h3 style="text-align: center;">Grilled Salmon</h3>
-                      <p class="recipe-stats">
-                        <span style="font-size: 20px; margin-left: 50px;">⏰ 30 min</span>
-                      </p>
-                      <div class="recipe-actions">
-                        <button class="btn-primary">Edit</button>
-                        <button class="btn-secondary">Delete</button>
-                      </div>
-                    </div>
+                    <% if (user.addedRecipe.length > 0) { %>
+                      <% user.addedRecipe.forEach((recipe) => { %>
+                          <div class="work">
+                              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop" alt="Recipe">
+                              <div class="recipe-content">
+                                  <h3 style="text-align: center;"><%= recipe.title %></h3>
+                                  <p class="recipe-stats">
+                                      <span style="font-size: 20px; margin-left: 50px;"><%= recipe.duration %></span>
+                                  </p>
+                                  <div class="recipe-actions">
+                                      <button class="btn-primary">Edit</button>
+                                      <button class="btn-secondary">Delete</button>
+                                  </div>
+                              </div>
+                          </div>
+                      <% }); %> <!-- Closing the forEach loop -->
+                  <% } else { %>
+                      <p>No recipes added yet.</p>
+                  <% } %> <!-- Closing the if statement -->
                   
                 </div>
+                
                 <div class="work">
                     <img src="images/project4.png" alt="">
                     

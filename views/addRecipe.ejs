@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/addRecipe.css">
+</head>
+<body>
+    <div class="form">
+        <form action="/addRecipe" method="POST">
+            <div class="title">
+                Add Recipes
+            </div>
+            <input type="text" placeholder="Title of the Dish" name="title">
+            <input type="text" placeholder="Enter the required time in minutes" name="duration">
+            <textarea rows="10" cols="9" placeholder="Ingrediants with details of the Recipe" name="ingrediants"></textarea>
+            <button class="submit" type="submit">Add Recipe &#43;</button>                        
+        </form>
+    </div>
+</body>
+</html>
