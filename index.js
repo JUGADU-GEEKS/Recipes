@@ -115,14 +115,14 @@ app.post('/signup', async(req,res)=>{
     
 })
 app.post('/login', async(req,res)=>{
-    let {username, password} = req.body;
-    let user = await userModel.findOne({username});
+    let {email, password} = req.body;
+    let user = await userModel.findOne({email});
     if(!user){
         res.redirect('/error/Error in fetching the user !');
     }
     bcrypt.compare(password, user.password, (err,matched)=>{
         if(matched){
-            let token = jwt.sign({username}, 'kunal_secret');
+            let token = jwt.sign({email}, 'kunal_secret');
             res.cookie('token', token);
             res.redirect("/home");
         }
