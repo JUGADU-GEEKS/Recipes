@@ -6,6 +6,9 @@
     --background: #242222;
     --card-bg: #232425;
   }
+  .id{
+    display: none;
+  }
 body{
     display: flex;
     height: 1200px;

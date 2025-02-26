@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Profile</title>
     <link rel="stylesheet" href="/stylesheets/profile.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600;700;900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-container">
@@ -34,57 +37,106 @@
             </button>
         </div>
     </nav>
-    
+
     <div class="right">
         <div class="pro">
             <img src="/images/demoprofile.jpg" alt="Profile Image">
             <div class="profile-info">
                 <div class="pers">
                     <%= user.username %><br>
-                    <%= user.email %><br>
+                        <%= user.email %><br>
                 </div>
                 <div class="profile-stats">
                     <div class="stat">
-                        <span class="stat-number"><%= user.addedRecipe.length %></span>
+                        <span class="stat-number">
+                            <%= user.addedRecipe.length %>
+                        </span>
                         <span class="stat-label">Recipes</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">0</span>
+                        <span class="stat-number"><%= recipes.length %></span>
                         <span class="stat-label">Favorites</span>
                     </div>
                 </div>
             </div>
         </div>
-    
+
         <h2 class="fav">Your Added Recipes</h2>
         <div id="portfolio">
             <div class="container">
                 <div class="work-list">
                     <button id="scroll-left" class="scroll-btn">&#10094;</button>
-                    <% if (user.addedRecipe.length > 0) { %>
-                        <% user.addedRecipe.forEach((recipe) => { %>
+                    <% if (user.addedRecipe.length> 0) { %>
+                        <% user.addedRecipe.forEach((recipe)=> { %>
                             <div class="work">
-                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop" alt="Recipe">
+                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop"
+                                    alt="Recipe">
                                 <div class="recipe-content">
-                                    <h3 style="text-align: center;"><%= recipe.title %></h3>
+                                    <h3 style="text-align: center;">
+                                        <%= recipe.title %>
+                                    </h3>
                                     <p class="recipe-stats">
-                                        <span style="font-size: 20px; margin-left: 50px;"><%= recipe.duration %></span>
+                                        <span style="font-size: 20px; margin-left: 50px;">
+                                            <%= recipe.duration %>
+                                        </span>
                                     </p>
                                     <div class="recipe-actions">
                                         <button class="btn-secondary">Delete</button>
                                     </div>
                                 </div>
                             </div>
-                        <% }); %>
-                    <% } else { %>
-                        <p>No recipes added yet.</p>
-                    <% } %>
+                            <% }); %>
+                                <% } else { %>
+                                    <p>No recipes added yet.</p>
+                                    <% } %>
                 </div>
             </div>
             <button id="scroll-right" class="scroll-btn">&#10095;</button>
-            <p class="slide-indicator" style="color: rgb(192, 172, 172); font-size: 18px;">Slide to view more Favourite Recipes →</p>
+            <p class="slide-indicator" style="color: rgb(192, 172, 172); font-size: 18px;">Slide to view more Favourite
+                Recipes →</p>
         </div>
         <h2 class="fav" style="margin-top: -27px;">Your Favorites</h2>
+        <div id="portfolio">
+            <div class="container">
+                <div class="work-list">
+                    <button id="scroll-left" class="scroll-btn">&#10094;</button>
+                    <% recipes.forEach((recipe)=> { %>
+                        <div class="work">
+                            <div class="id">
+                                <%=recipe.id%>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop"
+                                alt="Recipe">
+                            <div class="recipe-content">
+                                <h3 style="text-align: center;">
+                                    <%= recipe.title %>
+                                </h3>
+                                <p class="recipe-stats">
+                                    <span style="font-size: 20px; margin-left: 50px;">
+                                        <%= recipe.time %>Minutes
+                                    </span>
+                                </p>
+                                <div class="recipe-actions">
+                                    <button class="btn-secondary">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+            </div>
+            <button id="scroll-right" class="scroll-btn">&#10095;</button>
+            <p class="slide-indicator" style="color: rgb(192, 172, 172); font-size: 18px;">Slide to view more Favourite
+                Recipes →</p>
+        </div>
     </div>
-</body>
+    <script>
+        document.querySelectorAll(".work").forEach(work => {
+            work.addEventListener("click", async (e) => {
+                const id = work.querySelector(".id").textContent.trim();
+                window.location.href = `/recipeDesc?id=${id}`;
+            });
+        });
+    </script>
+    </body>
+
 </html>

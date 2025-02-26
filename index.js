@@ -74,21 +74,42 @@ app.get("/search", (req,res)=>{
     res.render("ingrediants");
 })
 
-app.get("/recipeDesc", async(req, res)=>{
+app.get("/recipeDesc", isLoggedIn, async(req, res)=>{
     const id = req.query.id;
     const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.SPOONACULAR_API_KEY}`)
     const desc = {
         title: response.data.title,
         time: response.data.readyInMinutes,
         ingredients: response.data.extendedIngredients.map(ing => ing.original), // Get ingredient names
-        description: response.data.summary
+        description: response.data.summary,
+        id: response.data.id
     };
     res.render("recipeDesc.ejs", { desc });
 })
-app.get('/profile',isLoggedIn, async(req,res)=>{
-    let user = await userModel.findOne({email: req.user.email}).populate('addedRecipe');
-    res.render("profile.ejs", { user });
-})
+app.get('/profile', isLoggedIn, async (req, res) => {
+    try {
+        let user = await userModel.findOne({ email: req.user.email }).populate('addedRecipe');
+        const ids = user.favorites;
+        
+        // Fetch favorite recipes
+        const recipes = await Promise.all(ids.map(async (id) => {
+            const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.SPOONACULAR_API_KEY}`);
+            return {
+                title: response.data.title,
+                time: response.data.readyInMinutes,
+                ingredients: response.data.extendedIngredients.map(ing => ing.original),
+                description: response.data.summary,
+                id: response.data.id
+            };
+        }));
+
+        res.render("profile.ejs", { user, recipes });
+
+    } catch (error) {
+        console.error("Error fetching favorite recipes:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
 app.get("/addyourown", (req,res)=>{
     res.render("addRecipe");
 })
@@ -157,6 +178,17 @@ app.post('/addRecipe', isLoggedIn, async (req,res)=>{
         ingrediantsWithDetails: ingredients
     })
     user.addedRecipe.push(recipe._id);
+    await user.save();
+    res.redirect('/home');
+})
+
+app.post("/addToFav", isLoggedIn, async(req,res)=>{
+    const {id} = req.body;
+    if(id){
+        console.log("id received");
+    }
+    const user = await userModel.findOne({email: req.user.email});
+    user.favorites.push(Number(id));
     await user.save();
     res.redirect('/home');
 })

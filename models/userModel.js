@@ -7,7 +7,8 @@ const userSchema = mongoose.Schema({
     googleId: { type: String },
     addedRecipe: [{type: mongoose.Schema.Types.ObjectId,
         ref: "recipe"
-    }]
+    }],
+    favorites: [{type: Number}]
 });
 
 module.exports  = mongoose.model("user", userSchema); 
