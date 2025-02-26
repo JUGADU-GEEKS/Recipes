@@ -11,7 +11,7 @@
   }
 body{
     display: flex;
-    height: 1200px;
+    height: 1600px;
     padding: 0;
     margin: 0;
     background: url('/images/back-profile.jpg');
@@ -137,7 +137,7 @@ body{
     font-size: 1rem;
     transition: background-color 0.3s;
     align-self: center;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .btn-secondary,.btn-primary:hover {
     background-color: var(--primary-hover);
@@ -186,14 +186,15 @@ body{
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(6px);
     width: 50vw;
-    height: 140vh;
+    height: 200vh;
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 15px;
     margin-right: 50px;
     margin-top: 120px;
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 .pro{
     /* border: 2px solid green; */
@@ -255,11 +256,10 @@ body{
     font-size: 30px;
     font-weight: 600;
     text-shadow: 4px 5px 0px rgb(0 0 0 / 50%);
-    
 }
 .recipes-grid {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     flex-wrap: nowrap;
   }
   .recipe-card {
@@ -274,7 +274,7 @@ body{
   }
   .recipe-card img {
     width: 100%;
-    height: 200px;
+    height: 240px;
     object-fit: cover;
   }
   .recipe-content {
@@ -325,7 +325,7 @@ body{
 .work {
     flex: 0 0 auto; /* Ensures items don’t shrink */
     width: 320px; /* Fixed width */
-    height: 400px; /* Fixed height */
+    height: 420px; /* Fixed height */
     border-radius: 10px;
     position: relative;
     overflow: hidden;
@@ -334,6 +334,7 @@ body{
     align-items: center;
     justify-content: center;
     background: #1a1a1a; /* Background color */
+    margin-bottom: 10px;
 }
 
 .work img {
