@@ -34,7 +34,12 @@ body{
     display: flex;
     align-items: center;
 }
-
+.favicon{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
 .nav-container {
     max-width: 1200px;
     width: 100%;

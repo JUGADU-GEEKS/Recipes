@@ -160,9 +160,6 @@ app.post('/addRecipe', isLoggedIn, async (req,res)=>{
     await user.save();
     res.redirect('/home');
 })
-
-
-
 //isLoggedIn Function
 function isLoggedIn(req, res, next) {
     const token = req.cookies.token;
