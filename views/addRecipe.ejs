@@ -10,6 +10,31 @@
     <link rel="stylesheet" href="/stylesheets/addRecipe.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+          <div class="left-side">
+            <a href="#"><img src="/images/image.png"  class="favicon"></a>
+            <a href="#" class="logo">Flavour Scripts</a>
+          </div>
+          <div class="nav-links">
+            <a href="/home" class="active">Home</a>
+            <a href="/search">AI Food Suggest</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact Us</a>
+          </div>
+          <div class="auth-links">
+            <a href="/logout" class="btn-primary">Logout</a>
+            <a href="/profile" >
+              <img src="/images/profile-icon.png" alt="Profile" class="profile-icon">
+            </a>
+          </div>
+          <button class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
     <div class="form">
         <form action="/addRecipe" method="POST">
             <div class="title">

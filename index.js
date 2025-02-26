@@ -92,7 +92,12 @@ app.get('/profile',isLoggedIn, async(req,res)=>{
 app.get("/addyourown", (req,res)=>{
     res.render("addRecipe");
 })
-
+app.get('/about',async(req,res)=>{
+    res.render('aboutus.ejs');
+})
+app.get('/contact',async(req,res)=>{
+    res.render('contactus.ejs');
+})
 //POST requests
 app.post('/signup', async(req,res)=>{
     let {username, email, password} = req.body;

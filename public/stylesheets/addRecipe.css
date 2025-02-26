@@ -12,15 +12,115 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     backdrop-filter: blur(5px);
-    overflow: hidden;
     gap: 60px;
+    overflow-x: hidden;
 }
+:root {
+    --primary: #22c55e;
+    --primary-hover: #16a34a;
+    --text: #9ba1a9;
+    --text-light: #6b7280;
+    --background: #242222;
+    --card-bg: #232425;
+  }
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(42, 41, 41, 0.95);
+    padding-top: 14px;
+    padding-bottom: 14px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 0;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .favicon{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  .left-side{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    margin: 0 1rem;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: var(--primary);
+  }
+  .auth-links a {
+    justify-content: end;
+  }
+  .auth-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .auth-links .profile-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  
+  .profile-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+  }
+  
+  .profile-icon:hover {
+    transform: scale(1.1);
+  }
+  .btn-primary {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary-hover);
+  }
+  
 .form{
+    margin-top: 150px;
     width: 90vw;
     height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 20px;
 }
 form{
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -113,14 +213,14 @@ textarea{
 }
 @keyframes moveBorder {
     0% {
-        border-top-color: red;
+        border-top-color: #16a34a;
         border-right-color: transparent;
         border-bottom-color: transparent;
         border-left-color: transparent;
     }
     25% {
         border-top-color: transparent;
-        border-right-color: blue;
+        border-right-color: #6b7280;
         border-bottom-color: transparent;
         border-left-color: transparent;
     }
@@ -134,10 +234,10 @@ textarea{
         border-top-color: transparent;
         border-right-color: transparent;
         border-bottom-color: transparent;
-        border-left-color: yellow;
+        border-left-color: gray;
     }
     100% {
-        border-top-color: red;
+        border-top-color: #16a34a;
         border-right-color: transparent;
         border-bottom-color: transparent;
         border-left-color: transparent;
@@ -171,6 +271,7 @@ textarea{
     height: 30px;
 }
 .submit{
+    margin-bottom: 20px;
     display: flex;
     width: 200px;
     height: 50px;
