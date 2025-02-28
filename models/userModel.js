@@ -8,7 +8,8 @@ const userSchema = mongoose.Schema({
     addedRecipe: [{type: mongoose.Schema.Types.ObjectId,
         ref: "recipe"
     }],
-    favorites: [{type: Number}]
+    favorites: [{type: Number}],
+    publicImage: {type: String, default: 'https://res.cloudinary.com/dk2toygoc/image/upload/v1740776557/profile_pictures/wgfvxuklhbdfe72ueru2.png'}
 });
 
 module.exports  = mongoose.model("user", userSchema); 

@@ -40,7 +40,12 @@
 
     <div class="right">
         <div class="pro">
-            <img src="/images/demoprofile.jpg" alt="Profile Image">
+            <form action="/updateProfile" id="uploadForm" method="POST" enctype="multipart/form-data"> 
+                <label for="profilePic">
+                    <img src="<%= user.publicImage%>" alt="Profile Image">
+                </label>   
+                <input type="file" id="profilePic" name="profilePic" style="display: none;" accept="image/jpeg, image/png">
+            </form>
             <div class="profile-info">
                 <div class="pers">
                     <%= user.username %><br>
@@ -135,6 +140,9 @@
                 const id = work.querySelector(".id").textContent.trim();
                 window.location.href = `/recipeDesc?id=${id}`;
             });
+        });
+        document.getElementById("profilePic").addEventListener("change", function () {
+        document.getElementById("uploadForm").submit();
         });
     </script>
     </body>

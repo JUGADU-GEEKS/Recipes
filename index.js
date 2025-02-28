@@ -7,7 +7,28 @@ const bcrypt = require('bcrypt');
 const passport = require('./utilities/passport-config');
 const session = require('express-session');
 const axios = require('axios');
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("cloudinary").v2;
+const multer = require('multer');
+
+
+//Setting up the storage
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET,
+});
 require('dotenv').config();
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: "profile_pictures", // Folder in Cloudinary
+        allowed_formats: ["jpg", "png"],
+    },
+});
+const upload = multer({ storage });
+
+
 
 //Requiring the DataBases
 const userModel = require('./models/userModel')
@@ -192,6 +213,18 @@ app.post("/addToFav", isLoggedIn, async(req,res)=>{
     await user.save();
     res.redirect('/home');
 })
+app.post("/updateProfile", isLoggedIn, upload.single("profilePic"), async (req, res) => {
+    try {
+        const user = await userModel.findOne({email: req.user.email});
+        user.publicImage = req.file.path; // Cloudinary URL
+        await user.save();
+        res.redirect("/profile"); // Reload profile page
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error uploading file");
+    }
+});
+
 //isLoggedIn Function
 function isLoggedIn(req, res, next) {
     const token = req.cookies.token;
