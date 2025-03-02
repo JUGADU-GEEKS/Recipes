@@ -40,11 +40,12 @@
 
     <div class="right">
         <div class="pro">
-            <form action="/updateProfile" id="uploadForm" method="POST" enctype="multipart/form-data"> 
+            <form action="/updateProfile" id="uploadForm" method="POST" enctype="multipart/form-data">
                 <label for="profilePic">
                     <img src="<%= user.publicImage%>" alt="Profile Image">
-                </label>   
-                <input type="file" id="profilePic" name="profilePic" style="display: none;" accept="image/jpeg, image/png">
+                </label>
+                <input type="file" id="profilePic" name="profilePic" style="display: none;"
+                    accept="image/jpeg, image/png">
             </form>
             <div class="profile-info">
                 <div class="pers">
@@ -59,7 +60,9 @@
                         <span class="stat-label">Recipes</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number"><%= recipes.length %></span>
+                        <span class="stat-number">
+                            <%= recipes.length %>
+                        </span>
                         <span class="stat-label">Favorites</span>
                     </div>
                 </div>
@@ -90,6 +93,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="work2">
+                                <div class="recipe-content xx">
+                                    <%= recipe.ingrediantsWithDetails%>
+                                </div>
+                            </div>
+
                             <% }); %>
                                 <% } else { %>
                                     <p>No recipes added yet.</p>
@@ -130,7 +139,8 @@
                 </div>
             </div>
             <button id="scroll-right" class="scroll-btn">&#10095;</button>
-            <p class="slide-indicator" style="color: rgb(192, 172, 172); font-size: 18px; margin-top: 10px;">Slide to view more Favourite
+            <p class="slide-indicator" style="color: rgb(192, 172, 172); font-size: 18px; margin-top: 10px;">Slide to
+                view more Favourite
                 Recipes →</p>
         </div>
     </div>
@@ -142,9 +152,32 @@
             });
         });
         document.getElementById("profilePic").addEventListener("change", function () {
-        document.getElementById("uploadForm").submit();
+            document.getElementById("uploadForm").submit();
         });
+
+        document.querySelectorAll(".work-list").forEach(workList => {
+            const work1 = workList.querySelector(".work");
+            const work2 = workList.querySelector(".work2");
+
+            work1.addEventListener("mouseenter", () => {
+                work2.style.display = "flex";
+                work2.style.opacity = "0"; // Start from 0 opacity
+                setTimeout(() => {
+                    work1.style.display = "none";
+                    work2.style.opacity = "1"; // Fade-in effect
+                }, 10);
+            });
+
+            workList.addEventListener("mouseleave", () => {
+                work2.style.opacity = "0"; // Fade-out effect
+                setTimeout(() => {
+                    work2.style.display = "none";
+                    work1.style.display = "flex";
+                }, 300); // Matches transition time
+            });
+        });
+
     </script>
-    </body>
+</body>
 
 </html>

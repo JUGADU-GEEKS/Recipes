@@ -131,6 +131,11 @@ app.get('/profile', isLoggedIn, async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+app.get('/profilecpy', isLoggedIn, async (req, res) => {
+         let user = await userModel.findOne({ email: req.user.email }).populate('addedRecipe');
+        const ids = user.favorites;
+        res.render("profilecopy.ejs", { user });
+});
 app.get("/addyourown", (req,res)=>{
     res.render("addRecipe");
 })
@@ -140,6 +145,11 @@ app.get('/about',async(req,res)=>{
 app.get('/contact',async(req,res)=>{
     res.render('contactus.ejs');
 })
+app.get('/logout', async(req,res)=>{
+    res.cookie("token", "");
+    res.redirect('/login');
+})
+
 //POST requests
 app.post('/signup', async(req,res)=>{
     let {username, email, password} = req.body;
