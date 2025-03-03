@@ -75,8 +75,9 @@ app.get("/error/:given", (req,res)=>{
     let e = req.params.given;
     res.render("error", {errorMessage: e});
 })
-app.get("/home",(req,res)=>{
-    res.render("home");
+app.get("/home",isLoggedIn, async(req,res)=>{
+    let user = await userModel.findOne({ email: req.user.email });
+    res.render("home", {user});
 })
 app.get("/vegan", async (req, res)=>{
     const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.SPOONACULAR_API_KEY}&diet=vegan`)
@@ -87,16 +88,19 @@ app.get("/vegan", async (req, res)=>{
     }))
     res.redirect(`/recipes?data=${encodeURIComponent(JSON.stringify(recipes))}`);
 })
-app.get("/recipes", async (req, res)=>{
+app.get("/recipes", isLoggedIn, async (req, res)=>{
+    let user = await userModel.findOne({ email: req.user.email })
     const recipes = JSON.parse(decodeURIComponent(req.query.data)); // Get recipes from query params
-    res.render("recipespage.ejs", { recipes });
+    res.render("recipespage.ejs", { recipes, user });
 })
-app.get("/search", (req,res)=>{
-    res.render("ingrediants");
+app.get("/search", isLoggedIn, async(req,res)=>{
+    let user = await userModel.findOne({ email: req.user.email })
+    res.render("ingrediants", {user});
 })
 
 app.get("/recipeDesc", isLoggedIn, async(req, res)=>{
     const id = req.query.id;
+    let user = await userModel.findOne({ email: req.user.email })
     const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.SPOONACULAR_API_KEY}`)
     const desc = {
         title: response.data.title,
@@ -105,7 +109,7 @@ app.get("/recipeDesc", isLoggedIn, async(req, res)=>{
         description: response.data.summary,
         id: response.data.id
     };
-    res.render("recipeDesc.ejs", { desc });
+    res.render("recipeDesc.ejs", { desc, user });
 })
 app.get('/profile', isLoggedIn, async (req, res) => {
     try {
@@ -136,14 +140,17 @@ app.get('/profilecpy', isLoggedIn, async (req, res) => {
         const ids = user.favorites;
         res.render("profilecopy.ejs", { user });
 });
-app.get("/addyourown", (req,res)=>{
-    res.render("addRecipe");
+app.get("/addyourown", isLoggedIn, async(req,res)=>{
+    let user = await userModel.findOne({ email: req.user.email })
+    res.render("addRecipe", {user});
 })
-app.get('/about',async(req,res)=>{
-    res.render('aboutus.ejs');
+app.get('/about',isLoggedIn, async(req,res)=>{
+    let user = await userModel.findOne({ email: req.user.email })
+    res.render('aboutus.ejs', {user});
 })
-app.get('/contact',async(req,res)=>{
-    res.render('contactus.ejs');
+app.get('/contact', isLoggedIn, async(req,res)=>{
+    let user = await userModel.findOne({ email: req.user.email })
+    res.render('contactus.ejs', {user});
 })
 app.get('/logout', async(req,res)=>{
     res.cookie("token", "");
@@ -191,7 +198,7 @@ app.post('/login', async(req,res)=>{
 app.post('/search', async(req,res)=>{
     const { ingredients } = req.body;
     const formattedIngredients = ingredients.join(",+");
-    const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.SPOONACULAR_API_KEY}&ingrediants=${formattedIngredients}&number=10`);
+    const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.SPOONACULAR_API_KEY}&includeIngredients=${formattedIngredients}&number=10`);
     const recipes = response.data.results.map(recipe=>({
         title : recipe.title,
         image : recipe.image,

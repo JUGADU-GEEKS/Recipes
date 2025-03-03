@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profile</title>
+    <title>Hi, <%=user.username%></title>
     <link rel="stylesheet" href="/stylesheets/profile.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600;700;900&display=swap"
         rel="stylesheet">
+        <link rel="icon" type="image/png" href="/images/favicon.png">
+
 </head>
 
 <body>
@@ -26,9 +28,6 @@
             </div>
             <div class="auth-links">
                 <a href="/logout" class="btn-primary">Logout</a>
-                <a href="/profile">
-                    <img src="/images/profile-icon.png" alt="Profile" class="profile-icon">
-                </a>
             </div>
             <button class="mobile-menu-btn">
                 <span></span>
@@ -88,9 +87,6 @@
                                             <%= recipe.duration %>
                                         </span>
                                     </p>
-                                    <div class="recipe-actions">
-                                        <button class="btn-secondary">Delete</button>
-                                    </div>
                                 </div>
                             </div>
                             <div class="work2">
@@ -130,9 +126,6 @@
                                         <%= recipe.time %>Minutes
                                     </span>
                                 </p>
-                                <div class="recipe-actions">
-                                    <button class="btn-secondary">Delete</button>
-                                </div>
                             </div>
                         </div>
                         <% }); %>
@@ -176,6 +169,23 @@
                 }, 300); // Matches transition time
             });
         });
+        document.querySelectorAll("#portfolio").forEach(portfolio => {
+            const workList = portfolio.querySelector(".work-list");
+            const scrollLeft = portfolio.querySelector("#scroll-left");
+            const scrollRight = portfolio.querySelector("#scroll-right");
+
+            // Adjust scroll amount (change based on item width)
+            const scrollAmount = 300;
+
+            scrollLeft.addEventListener("click", () => {
+                workList.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+            });
+
+            scrollRight.addEventListener("click", () => {
+                workList.scrollBy({ left: scrollAmount, behavior: "smooth" });
+            });
+        });
+
 
     </script>
 </body>

@@ -6,6 +6,10 @@
     --background: #242222;
     --card-bg: #232425;
   }
+  a{
+    text-decoration: none;
+    color: greenyellow;
+  }
 body{
     margin: 0;
     padding-bottom: 100px;
