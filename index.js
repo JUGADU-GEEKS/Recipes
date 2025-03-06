@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 const passport = require('./utilities/passport-config');
 const session = require('express-session');
 const axios = require('axios');
+const port = 5000;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const cloudinary = require("cloudinary").v2;
 const multer = require('multer');
@@ -264,4 +265,6 @@ function isLoggedIn(req, res, next) {
 
 
 //running the app
-app.listen(3000)
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+  })
