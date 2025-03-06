@@ -55,6 +55,9 @@ app.use(cookieParser());
 app.set('view engine', "ejs"); 
 
 //GET requests
+app.get("/", (req,res)=>{
+    res.redirect("/signup");
+})
 app.get("/signup", (req,res)=>{
     res.render("signup");
 })
