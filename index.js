@@ -263,4 +263,4 @@ function isLoggedIn(req, res, next) {
 
 
 //running the app
-app.listen(3000);
+module.exports = app;
